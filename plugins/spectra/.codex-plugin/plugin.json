@@ -1,0 +1,34 @@
+{
+  "name": "spectra",
+  "version": "0.1.0",
+  "description": "Spectra fixed-rate markets, yields, MetaVaults and portfolios for agents, with safe unsigned transaction building.",
+  "author": {
+    "name": "Perspective",
+    "url": "https://github.com/perspectivefi"
+  },
+  "homepage": "https://www.spectra.finance",
+  "repository": "https://github.com/perspectivefi/spectra-ai",
+  "license": "MIT",
+  "keywords": [
+    "spectra",
+    "defi",
+    "fixed-rate",
+    "yield",
+    "principal-token"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Spectra",
+    "shortDescription": "Fixed-rate yields and Spectra markets.",
+    "longDescription": "Find and compare Spectra fixed rates, LP and MetaVault yields across networks, read wallet positions, and prepare unsigned Principal Token trades for the user to sign.",
+    "developerName": "Perspective",
+    "category": "Finance",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "What are the best fixed yields on stablecoins on Spectra right now?",
+      "Review the Spectra positions of this wallet."
+    ]
+  }
+}

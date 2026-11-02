@@ -1,0 +1,16 @@
+{
+  "name": "spectra-ai",
+  "owner": {
+    "name": "Perspective",
+    "url": "https://www.spectra.finance"
+  },
+  "description": "Spectra for AI agents: live fixed-rate markets, yields, MetaVaults and portfolios, plus safe unsigned transaction building.",
+  "plugins": [
+    {
+      "name": "spectra",
+      "source": "./plugins/spectra",
+      "description": "Find and compare Spectra fixed rates, LP and MetaVault yields; read positions; prepare unsigned PT trades.",
+      "category": "Finance"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "spectra-ai",
+  "interface": {
+    "displayName": "Spectra"
+  },
+  "plugins": [
+    {
+      "name": "spectra",
+      "source": {
+        "source": "local",
+        "path": "./plugins/spectra"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

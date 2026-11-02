@@ -1,0 +1,22 @@
+{
+  "name": "spectra",
+  "version": "0.1.0",
+  "description": "Spectra fixed-rate markets, yields, MetaVaults and portfolios for agents, with safe unsigned transaction building.",
+  "author": {
+    "name": "Perspective",
+    "url": "https://www.spectra.finance"
+  },
+  "homepage": "https://www.spectra.finance",
+  "repository": "https://github.com/perspectivefi/spectra-ai",
+  "license": "MIT",
+  "keywords": [
+    "spectra",
+    "defi",
+    "fixed-rate",
+    "yield",
+    "principal-token",
+    "mcp"
+  ],
+  "privacyPolicyUrl": "https://app.spectra.finance/documents/spectra-privacy-policy.pdf",
+  "icon": ".claude-plugin/icon.png"
+}
