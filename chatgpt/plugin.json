@@ -1,0 +1,95 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "spectra",
+  "version": "0.1.1",
+  "description": "Live Spectra fixed rates, yield opportunities, markets, MetaVaults and wallet positions, read-only.",
+  "author": {
+    "name": "Perspective",
+    "email": "contact@spectra.finance",
+    "url": "https://www.spectra.finance"
+  },
+  "homepage": "https://www.spectra.finance",
+  "repository": "https://github.com/perspectivefi/spectra-ai",
+  "license": "MIT",
+  "keywords": ["spectra", "defi", "fixed-rate", "yield", "principal-token"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Spectra",
+        "shortDescription": "Fixed-rate DeFi yields",
+        "longDescription": "Spectra is a permissionless fixed-rate and yield-trading protocol. It splits interest-bearing tokens into Principal Tokens (PT), which lock a fixed rate when held to maturity, and Yield Tokens (YT), and it offers liquidity pools and curated MetaVaults across 14 networks.\n\nThis plugin gives ChatGPT live, read-only Spectra data: ranked fixed-rate (PT), LP and MetaVault yields filtered by asset, network, product, liquidity and maturity; detail and history for one market; MetaVault curators, strategies, APYs and allocations; a wallet's Spectra positions from a public address; and the protocol's concepts and risks with links to the docs.\n\nEvery answer carries the time the data was read and links to the Spectra app. APYs are percentages: a fixed rate holds only if the PT is held to maturity, and no rate is guaranteed. The plugin cannot sign, send or execute transactions, and it needs no account or API key. Tokenized-equity markets are excluded. This is information, not financial advice.",
+        "developerName": "Perspective",
+        "category": "Finance",
+        "capabilities": ["Read"],
+        "websiteURL": "https://www.spectra.finance",
+        "supportURL": "https://github.com/perspectivefi/spectra-ai/issues",
+        "privacyPolicyURL": "https://app.spectra.finance/documents/spectra-privacy-policy.pdf",
+        "termsOfServiceURL": "https://app.spectra.finance/documents/spectra-terms-of-use.pdf",
+        "defaultPrompt": [
+          "What are the best fixed rates on USDC on Spectra right now?",
+          "Compare Spectra's ETH fixed rates with at least three months to maturity.",
+          "Review the Spectra positions of this wallet."
+        ],
+        "brandColor": "#00F99B",
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find fixed rates for an asset",
+              "prompt": "What are the best fixed rates on USDC on Spectra right now?",
+              "tools_triggered": "spectra_find_yields",
+              "expected_behavior": "Ranks USDC fixed rates across networks with the APY in percent, network, maturity, liquidity, the as_of time and app links, and says a fixed rate holds only if the PT is held to maturity."
+            },
+            {
+              "description": "Look up one market",
+              "prompt": "Show me the Spectra sjEUR market.",
+              "tools_triggered": "spectra_get_market",
+              "expected_behavior": "Returns the sjEUR market's fixed, implied, variable and LP APY, maturity, liquidity, data-quality flags and app links."
+            },
+            {
+              "description": "Show a market's history",
+              "prompt": "How has the implied APY of Spectra's sjEUR market moved over the last 30 days?",
+              "tools_triggered": "spectra_get_market_history",
+              "expected_behavior": "Summarizes the 30-day implied APY series with its minimum, maximum, average and change."
+            },
+            {
+              "description": "List MetaVaults",
+              "prompt": "List Spectra MetaVaults with their 30-day APY.",
+              "tools_triggered": "spectra_get_metavault",
+              "expected_behavior": "Lists the MetaVaults with curator, live and 30-day APY, TVL and app links."
+            },
+            {
+              "description": "Read a wallet's positions",
+              "prompt": "What Spectra positions does 0x5e93e1193a5e297cba0856e9b3f22b6e05429b9a hold?",
+              "tools_triggered": "spectra_get_portfolio",
+              "expected_behavior": "Lists the wallet's Spectra positions (this public MetaVault contract on Base holds several) with USD values, maturity status and suggested next steps, without executing anything."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Trade request: the plugin is read-only, so it explains it cannot trade and links the market in the Spectra app",
+              "prompt": "Buy 1,000 USDC of PT-sjEUR for me."
+            },
+            {
+              "description": "Transfer request: no tool can move funds, so it declines without calling a tool",
+              "prompt": "Send 0.5 ETH from my wallet to 0x000000000000000000000000000000000000dEaD."
+            },
+            {
+              "description": "Price prediction: not Spectra data and not advice, so it declines and offers current Spectra rates instead",
+              "prompt": "Will ETH go up next month?"
+            }
+          ]
+        },
+        "demo_recording_url": "",
+        "commerce": false,
+        "commerce_description": "Spectra for ChatGPT does not sell anything or process payments. It reads public DeFi market data and public wallet positions."
+      },
+      "publication": {
+        "release_notes": "Initial release: read-only Spectra data (fixed rates, yield rankings, market detail and history, MetaVaults, wallet positions and protocol docs)."
+      }
+    }
+  }
+}

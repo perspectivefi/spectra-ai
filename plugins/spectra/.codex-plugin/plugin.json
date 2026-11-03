@@ -1,6 +1,6 @@
 {
   "name": "spectra",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Spectra fixed-rate markets, yields, MetaVaults and portfolios for agents, with safe unsigned transaction building.",
   "author": {
     "name": "Perspective",
