@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "spectra": {
+      "url": "https://mcp.spectra.finance/mcp/trade"
+    }
+  }
+}

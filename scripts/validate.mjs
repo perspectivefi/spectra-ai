@@ -20,6 +20,7 @@ const readJson = (path) => {
 
 const claudeMarket = readJson(".claude-plugin/marketplace.json");
 const codexMarket = readJson(".agents/plugins/marketplace.json");
+const cursorMarket = readJson(".cursor-plugin/marketplace.json");
 const plugins = new Map();
 
 for (const entry of claudeMarket?.plugins ?? []) {
@@ -30,28 +31,49 @@ for (const entry of claudeMarket?.plugins ?? []) {
   }
   plugins.set(entry.name, dir);
 }
+const sameDir = (a, b) => a.replace(/\/$/, "") === b.replace(/\/$/, "");
 for (const entry of codexMarket?.plugins ?? []) {
   const dir = entry.source?.path;
   if (!dir || !existsSync(join(root, dir))) fail(`.agents/plugins/marketplace.json: plugin "${entry.name}" path ${dir} does not exist`);
-  else if (plugins.get(entry.name) && plugins.get(entry.name).replace(/\/$/, "") !== dir.replace(/\/$/, "")) {
-    fail(`plugin "${entry.name}" points to different directories in the two marketplaces`);
+  else if (plugins.get(entry.name) && !sameDir(plugins.get(entry.name), dir)) {
+    fail(`plugin "${entry.name}" points to different directories in the Claude and Codex marketplaces`);
+  }
+}
+for (const entry of cursorMarket?.plugins ?? []) {
+  const dir = entry.source;
+  if (typeof dir !== "string" || !existsSync(join(root, dir))) fail(`.cursor-plugin/marketplace.json: plugin "${entry.name}" source ${dir} does not exist`);
+  else if (plugins.get(entry.name) && !sameDir(plugins.get(entry.name), dir)) {
+    fail(`plugin "${entry.name}" points to different directories in the Claude and Cursor marketplaces`);
   }
 }
 
+const servers = (config) =>
+  Object.entries(config?.mcpServers ?? {})
+    .map(([server, entry]) => `${server} ${entry.url}`)
+    .sort()
+    .join(", ");
 for (const [name, dir] of plugins) {
   const claude = readJson(join(dir, ".claude-plugin/plugin.json"));
   const codex = readJson(join(dir, ".codex-plugin/plugin.json"));
+  const cursor = readJson(join(dir, ".cursor-plugin/plugin.json"));
   const mcp = readJson(join(dir, ".mcp.json"));
-  for (const [label, manifest] of [["claude", claude], ["codex", codex]]) {
-    if (!manifest) continue;
+  const cursorMcp = readJson(join(dir, "mcp.json"));
+  const manifests = [["claude", claude], ["codex", codex], ["cursor", cursor]].filter(([, manifest]) => manifest);
+  for (const [label, manifest] of manifests) {
     if (manifest.name !== name) fail(`${dir} ${label} plugin.json: name "${manifest.name}" should be "${name}"`);
     if (!/^\d+\.\d+\.\d+/.test(manifest.version ?? "")) fail(`${dir} ${label} plugin.json: missing semver version`);
   }
-  if (claude && codex && claude.version !== codex.version) fail(`${dir}: claude (${claude.version}) and codex (${codex.version}) versions differ`);
-  if (claude?.icon && !existsSync(join(root, dir, claude.icon))) fail(`${dir}: icon ${claude.icon} not found`);
-  for (const [server, config] of Object.entries(mcp?.mcpServers ?? {})) {
-    if (!/^https:\/\//.test(config.url ?? "")) fail(`${dir}/.mcp.json: server "${server}" needs an https url`);
+  if (new Set(manifests.map(([, manifest]) => manifest.version)).size > 1) {
+    fail(`${dir}: plugin versions differ (${manifests.map(([label, manifest]) => `${label} ${manifest.version}`).join(", ")})`);
   }
+  if (claude?.icon && !existsSync(join(root, dir, claude.icon))) fail(`${dir}: icon ${claude.icon} not found`);
+  if (cursor?.logo && !existsSync(join(root, dir, cursor.logo))) fail(`${dir}: Cursor logo ${cursor.logo} not found`);
+  for (const [file, config] of [[".mcp.json", mcp], ["mcp.json", cursorMcp]]) {
+    for (const [server, entry] of Object.entries(config?.mcpServers ?? {})) {
+      if (!/^https:\/\//.test(entry.url ?? "")) fail(`${dir}/${file}: server "${server}" needs an https url`);
+    }
+  }
+  if (mcp && cursorMcp && servers(mcp) !== servers(cursorMcp)) fail(`${dir}: .mcp.json and mcp.json (Cursor) list different servers`);
 
   const skillsDir = join(root, dir, "skills");
   for (const skill of existsSync(skillsDir) ? readdirSync(skillsDir) : []) {

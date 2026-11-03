@@ -2,7 +2,7 @@
 
 Live [Spectra](https://www.spectra.finance) fixed rates, yield opportunities, markets, MetaVaults and wallet positions for AI agents, plus safe, unsigned transaction building.
 
-This repository holds the **Spectra plugin** (skills and MCP connection) for Claude Code and Codex. The **remote MCP server** it connects to works with any MCP client.
+This repository holds the **Spectra plugin** (skills and MCP connection) for Claude Code, Codex and Cursor. The **remote MCP server** it connects to works with any MCP client.
 
 Spectra is a permissionless fixed-rate and yield-trading protocol. It splits interest-bearing tokens into Principal Tokens (PT), which lock a fixed rate when held to maturity, and Yield Tokens (YT). It also offers liquidity pools and curated MetaVaults across 14 networks.
 
@@ -39,6 +39,10 @@ Add a custom connector (remote MCP server) with `https://mcp.spectra.finance/mcp
 ### Codex
 
 Add this repository as a plugin marketplace. The manifest is [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json).
+
+### Cursor
+
+The Cursor manifest is [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json). To install the plugin locally, clone this repository, copy `plugins/spectra` to `~/.cursor/plugins/local/spectra`, then run **Developer: Reload Window**. To add only the server, use the JSON config above.
 
 ## Tools
 

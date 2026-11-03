@@ -4,7 +4,7 @@ Instructions for coding agents working on this repository (Claude Code reads thi
 
 ## What this is
 
-The public Spectra plugin for AI agents: skills (`plugins/spectra/skills`), plugin manifests for Claude Code (`.claude-plugin/`) and Codex (`.codex-plugin/`), the MCP connection (`plugins/spectra/.mcp.json`) and the marketplace manifests (`.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`). The MCP server itself is hosted at `https://mcp.spectra.finance`; its source is not in this repository.
+The public Spectra plugin for AI agents: skills (`plugins/spectra/skills`), plugin manifests for Claude Code (`.claude-plugin/`), Codex (`.codex-plugin/`) and Cursor (`.cursor-plugin/`), the MCP connection (`plugins/spectra/.mcp.json`, and `plugins/spectra/mcp.json` for Cursor) and the marketplace manifests (`.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, `.cursor-plugin/marketplace.json`). The MCP server itself is hosted at `https://mcp.spectra.finance`; its source is not in this repository.
 
 ## Rules
 
@@ -16,5 +16,5 @@ The public Spectra plugin for AI agents: skills (`plugins/spectra/skills`), plug
 
 ## Checks
 
-- `node scripts/validate.mjs`: manifests parse, versions match, and every skill has valid frontmatter.
+- `node scripts/validate.mjs`: manifests parse, the Claude, Codex and Cursor versions match, `.mcp.json` and Cursor's `mcp.json` list the same server, and every skill has valid frontmatter.
 - `claude plugin validate plugins/spectra` and `claude plugin validate .`: run after changing the plugin or the marketplace.
