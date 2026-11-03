@@ -30,7 +30,8 @@
           "Compare Spectra's ETH fixed rates with at least three months to maturity.",
           "Review the Spectra positions of this wallet."
         ],
-        "brandColor": "#00F99B",
+        "brandColor": "#00A86B",
+        "brandColorDark": "#00F99B",
         "composerIcon": "./assets/logo.png",
         "logo": "./assets/logo.png"
       },

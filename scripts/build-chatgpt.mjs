@@ -36,6 +36,15 @@ for (const key of ["logo", "composerIcon"]) {
 }
 if (openai.apps || openai.hooks) fail("packages with apps or hooks can't be submitted");
 
+// The directory needs at least 2:1 contrast between brandColor and white.
+const luminance = (hex) =>
+  [1, 3, 5]
+    .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+    .reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+if (!/^#[0-9A-Fa-f]{6}$/.test(ui.brandColor ?? "")) fail("interface.brandColor must be a #RRGGBB color");
+else if (1.05 / (luminance(ui.brandColor) + 0.05) < 2) fail(`interface.brandColor ${ui.brandColor} has less than 2:1 contrast with white`);
+
 // One server: the read-only endpoint, with no headers.
 const servers = Object.entries(mcp.mcpServers ?? {});
 if (servers.length !== 1) fail("mcp.json must declare exactly one server");
