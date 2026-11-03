@@ -84,7 +84,7 @@
             }
           ]
         },
-        "demo_recording_url": "",
+        "demo_recording_url": "https://github.com/perspectivefi/spectra-ai/releases/download/chatgpt-demo/spectra-chatgpt-demo.gif",
         "commerce": false,
         "commerce_description": "Spectra for ChatGPT does not sell anything or process payments. It reads public DeFi market data and public wallet positions."
       },
