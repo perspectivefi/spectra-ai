@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "spectra",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Live Spectra fixed rates, yield opportunities, markets, MetaVaults and wallet positions, read-only.",
   "author": {
     "name": "Perspective",

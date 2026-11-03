@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Spectra for AI agents: live fixed-rate markets, yields, MetaVaults and portfolios, plus safe unsigned transaction building.",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "plugins": [
     {
