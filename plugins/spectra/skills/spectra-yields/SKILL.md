@@ -9,9 +9,8 @@ Spectra splits interest-bearing tokens into a **Principal Token (PT)**, which re
 
 ## Get the data (in order of preference)
 
-1. **Spectra MCP tools**, if connected: `spectra_find_yields`, `spectra_get_market`, `spectra_get_market_history`, `spectra_get_metavault`, `spectra_get_portfolio`, `spectra_protocol_info`.
-2. **`spectra` CLI**, if installed (JSON when piped): `spectra yields --asset USDC --product fixed`, `spectra market <id>`, `spectra vaults`, `spectra portfolio <address>`, `spectra history <id>`. Run `spectra --help`.
-3. **REST API** directly, see [references/api.md](references/api.md).
+1. **Spectra MCP tools**, if connected: `spectra_find_yields`, `spectra_get_market`, `spectra_get_market_history`, `spectra_get_metavault`, `spectra_get_portfolio`, `spectra_protocol_info`. The server is `https://mcp.spectra.finance/mcp` (no account or key).
+2. **REST API** directly, see [references/api.md](references/api.md).
 
 ## Workflow for "where should I earn yield on X?"
 

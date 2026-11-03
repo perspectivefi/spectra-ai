@@ -1,4 +1,4 @@
-# Spectra REST API (fallback when no MCP server or CLI is available)
+# Spectra REST API (fallback when the MCP server is not connected)
 
 Base URL: `https://api.spectra.finance` · OpenAPI: `https://api.spectra.finance/api-docs` · No key required.
 

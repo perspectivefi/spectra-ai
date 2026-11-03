@@ -11,7 +11,7 @@ You never sign or broadcast. You prepare unsigned transactions, explain them, an
 
 - `spectra_prepare_pt_trade` (`side`: `buy` | `sell`; `amount` in token units; `token`: `underlying` | `ibt` | address; `slippage_pct`, default 0.5; `receiver`; optional `sender`).
 - `spectra_prepare_redeem` for PTs past maturity.
-- `spectra` CLI equivalents, if installed: `spectra quote <id> --amount 1000`, `spectra prepare <id> --amount 1000 --receiver 0x…`, `spectra redeem <id> --amount … --receiver 0x…`.
+- Both are on the Spectra MCP server's trade endpoint, `https://mcp.spectra.finance/mcp/trade`. If they are not available, send the user to the market's app link instead; never build calldata by hand.
 
 ## Required flow
 
