@@ -40,6 +40,10 @@ Add a custom connector (remote MCP server) with `https://mcp.spectra.finance/mcp
 
 Add this repository as a plugin marketplace. The manifest is [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json).
 
+### ChatGPT
+
+The read-only plugin (`spectra-yields` skill and the read-only server, built from [`chatgpt/`](chatgpt/)) is in review for the ChatGPT plugin directory. Until it is listed, go to **Plugins → Add → Add custom MCP server** in ChatGPT and use `https://mcp.spectra.finance/mcp` with **No authentication**.
+
 ### Cursor
 
 The Cursor manifest is [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json). To install the plugin locally, clone this repository, copy `plugins/spectra` to `~/.cursor/plugins/local/spectra`, then run **Developer: Reload Window**. To add only the server, use the JSON config above.
