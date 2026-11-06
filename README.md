@@ -42,7 +42,7 @@ Add this repository as a plugin marketplace. The manifest is [`.agents/plugins/m
 
 ### ChatGPT
 
-The read-only plugin (`spectra-yields` skill and the read-only server, built from [`chatgpt/`](chatgpt/)) is in review for the ChatGPT plugin directory. Until it is listed, go to **Plugins → Add → Add custom MCP server** in ChatGPT and use `https://mcp.spectra.finance/mcp` with **No authentication**.
+Install the [Spectra plugin](https://chatgpt.com/plugins/plugin_asdk_app_6aea03e14db88191a0a421eff226b3d7) from the ChatGPT plugin directory. It adds the read-only server and the `spectra-yields` skill, built from [`chatgpt/`](chatgpt/). To add only the server, go to **Plugins → Add → Add custom MCP server** in ChatGPT and use `https://mcp.spectra.finance/mcp` with **No authentication**.
 
 ### Cursor
 
